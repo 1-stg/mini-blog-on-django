@@ -1,0 +1,156 @@
+{% load static %}
+<html>
+
+<head>
+	<title>Мой блог</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link rel="shortcut icon" href="css/images/favicon.ico" />
+</head>
+
+<body>
+	<div class="shell">
+		<div class="border">
+
+			<div id="navigation">
+				<ul>
+					<li><a href="/" class="active">Главная</a></li>
+					<li><a href="/admin">Админ панель</a></li>
+
+				</ul>
+			</div>
+
+			<div id="main">
+				<div id="content" class="left">
+
+					<div class="projects">
+						<h3>{{ post.title }}</h3>
+						<p align="center"><a href="#"><img src="{{ post.img.url }}" width="50%" /></a></p>
+						<div class="item">
+							<div class="image left">
+							</div>
+							<div class="text left">
+								<p>{{ post.description }}</p>
+								<p>Автор: {{ post.author }}</p>
+							</div>
+							<div class="cl">&nbsp;</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="cl">&nbsp;</div>
+			</div>
+
+
+		</div>
+
+		<div class="likes-section">
+			<div class="likes-count">
+				<i class="fas fa-heart"></i>
+				<span>Понравилось: {{ post.likes_set.all.count }}</span>
+			</div>
+			<div class="likes-buttons">
+				<a href="{% url 'add_likes' post.id %}" class="like-btn" id="likeBtn">
+					<i class="far fa-thumbs-up"></i>
+					<span>Нравится</span>
+				</a>
+				<a href="{% url 'del_likes' post.id %}" class="dislike-btn" id="dislikeBtn">
+					<i class="far fa-thumbs-down"></i>
+					<span>Не нравится</span>
+				</a>
+			</div>
+		</div>
+
+		<div class="form-comment">
+			<h3>Оставте комментарий :]</h3>
+			<div>
+				<form action="{% url 'add_comments' post.id %}" method="post">
+					{% csrf_token %}
+					<div>
+						<label>Ваш комментарий</label>
+						<textarea name="text_comments"></textarea>
+					</div>
+
+					<div>
+						<label>Ваше имя *</label>
+						<input type="text" name="name">
+					</div>
+
+					<div>
+						<label>Ваша почта *</label>
+						<input type="email" name="email">
+					</div>
+
+					<div><input type="submit"></div>
+				</form>
+			</div>
+		</div>
+
+		<div>
+			{% for comment in post.comments_set.all %}
+			<div class="view-comment">
+				<h4>{{ comment.name }}</h4>
+				<p>
+					{{ comment.text_comments }}
+				</p>
+			</div>
+			{% endfor %}
+
+
+		</div>
+
+		<div id="footer">
+			<p class="copy right">Copyright &copy; 2025 </p>
+		</div>
+	</div>
+</body>
+<script>
+	let lastScroll = 0;
+	const header = document.getElementById('navigation');
+	const scrollThreshold = 100; // На сколько пикселей нужно проскролить, чтобы скрыть хедер
+
+	window.addEventListener('scroll', function () {
+		const currentScroll = window.pageYOffset;
+
+		if (currentScroll <= 0) {
+			// В самом верху страницы - показываем хедер
+			header.classList.remove('hide');
+			return;
+		}
+
+		if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+			// Скроллим вниз - скрываем хедер
+			header.classList.add('hide');
+		} else if (currentScroll < lastScroll) {
+			// Скроллим вверх - показываем хедер
+			header.classList.remove('hide');
+		}
+
+		lastScroll = currentScroll;
+	});
+</script>
+<script>
+    // Обработчики для лайков
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeBtn = document.getElementById('likeBtn');
+        const dislikeBtn = document.getElementById('dislikeBtn');
+        
+        if (likeBtn && dislikeBtn) {
+            likeBtn.addEventListener('click', function(e) {
+                this.classList.add('active', 'pulse');
+                dislikeBtn.classList.remove('active');
+                setTimeout(() => this.classList.remove('pulse'), 300);
+            });
+            
+            dislikeBtn.addEventListener('click', function(e) {
+                this.classList.add('active', 'pulse');
+                likeBtn.classList.remove('active');
+                setTimeout(() => this.classList.remove('pulse'), 300);
+            });
+        }
+    });
+</script>
+
+
+</html>

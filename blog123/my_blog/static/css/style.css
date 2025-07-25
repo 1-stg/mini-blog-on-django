@@ -1,0 +1,443 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --dark-blue: #0a192f;
+    --medium-blue: #172a45;
+    --light-blue: #64ffda;
+    --white: #ffffff;
+    --light-gray: #ccd6f6;
+    --dark-gray: #8892b0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: var(--white);
+    min-height: 100vh;
+}
+
+/* Убираем ограничение по ширине */
+.shell {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+}
+
+.border {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+/* Header/Navigation - анимированный */
+#navigation {
+    background-color: var(--dark-blue);
+    padding: 1.5rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+#navigation.hide {
+    transform: translateY(-100%);
+}
+
+#navigation ul {
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#navigation ul li {
+    margin-right: 2rem;
+}
+
+#navigation ul li a {
+    color: var(--light-gray);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+#navigation ul li a:hover {
+    color: var(--light-blue);
+}
+
+#navigation ul li a.active {
+    color: var(--light-blue);
+}
+
+#navigation ul li a.active:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--light-blue);
+}
+
+/* Main Content - добавляем отступ сверху для фиксированного хедера */
+#main {
+    padding: 6rem 2rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projects {
+    margin-bottom: 3rem;
+}
+
+.projects h3 {
+    font-size: 2rem;
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.item {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.image.left {
+    float: left;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+}
+
+.image.left img {
+    border-radius: 6px;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.image.left img:hover {
+    transform: scale(1.02);
+}
+
+.text.left h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark-blue);
+}
+
+.text.left h4 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.text.left h4 a:hover {
+    color: var(--light-blue);
+}
+
+.text.left p {
+    color: var(--dark-gray);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.cl {
+    clear: both;
+}
+
+/* Likes Section */
+.likes-section {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.likes-section p {
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+.likes-section a {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.likes-section a:first-child {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+}
+
+.likes-section a:last-child {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+.likes-section a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Comments Form */
+.form-comment {
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-comment h3 {
+    font-size: 1.5rem;
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-comment form div {
+    margin-bottom: 1.5rem;
+}
+
+.form-comment label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-blue);
+    font-weight: 500;
+}
+
+.form-comment textarea,
+.form-comment input[type="text"],
+.form-comment input[type="email"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-comment textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-comment textarea:focus,
+.form-comment input[type="text"]:focus,
+.form-comment input[type="email"]:focus {
+    border-color: var(--light-blue);
+    outline: none;
+}
+
+.form-comment input[type="submit"] {
+    background-color: var(--dark-blue);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.form-comment input[type="submit"]:hover {
+    background-color: var(--medium-blue);
+    transform: translateY(-2px);
+}
+
+/* Comments List */
+.view-comment {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.view-comment h4 {
+    font-size: 1.2rem;
+    color: var(--dark-blue);
+    margin-bottom: 0.75rem;
+}
+
+.view-comment p {
+    color: var(--dark-gray);
+    line-height: 1.7;
+}
+
+/* Footer */
+#footer {
+    background-color: var(--dark-blue);
+    color: var(--light-gray);
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+#footer .copy {
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #main {
+        padding: 5rem 1rem 2rem;
+    }
+    
+    #navigation ul {
+        justify-content: center;
+        padding: 0 1rem;
+    }
+    
+    .image.left {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .text.left {
+        text-align: center;
+    }
+    
+    .item {
+        text-align: center;
+    }
+    
+    .form-comment {
+        padding: 1.5rem;
+    }
+}
+/* Добавьте это в ваш CSS файл */
+.likes-section {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.likes-count {
+    font-size: 1.2rem;
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.likes-count i {
+    margin-right: 8px;
+    color: var(--light-blue);
+}
+
+.likes-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.like-btn, .dislike-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.like-btn {
+    color: #4CAF50;
+    border: 1px solid #e0e0e0;
+}
+
+.dislike-btn {
+    color: #F44336;
+    border: 1px solid #e0e0e0;
+}
+
+.like-btn:hover, .like-btn.active {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.dislike-btn:hover, .dislike-btn.active {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+}
+
+.like-btn i, .dislike-btn i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.like-btn.active i {
+    color: #4CAF50;
+    transform: scale(1.1);
+}
+
+.dislike-btn.active i {
+    color: #F44336;
+    transform: scale(1.1);
+}
+
+/* Эффект нажатия */
+.like-btn:active, .dislike-btn:active {
+    transform: scale(0.95);
+}
+
+/* Анимация "пульсации" при нажатии */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.like-btn.pulse, .dislike-btn.pulse {
+    animation: pulse 0.3s ease;
+}
